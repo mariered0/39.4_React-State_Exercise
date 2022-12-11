@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from "react";
 import App from './App';
 import './EightBall.css';
 
@@ -23,16 +24,35 @@ const messages = [
     { msg: "My sources say no.", color: "red" },
     { msg: "Outlook not so good.", color: "red" },
     { msg: "Very doubtful.", color: "red" },
+    { msg: "Think of a Question", color: "black"}
   ]
 
 const EightBall = (props) => {
-    let message = 'Thing of a Question';
+    //Get randomIdx to choose a random message
+    const randomIdx = () => Math.floor(Math.random() * 19);
+
+    const restart = () => {
+        chooseMsg(messages[20].msg);
+    }
+
+
+    const showAnswer = () => {
+        console.log('clicked!');
+        chooseMsg(messages[randomIdx()].msg);
+    }
+
+    const [message, chooseMsg] = useState(messages[20].msg);
+
     return (
         <div className="EightBall">
             <h1 className="EightBall-title">Eight Ball</h1>
-            <div className="EightBall-ball">
-                <p className="EightBall-message">{message}</p>
+            <div className="EightBall-ball" onClick={showAnswer}>
+                <div className="EightBall-message">
+                <p>{message}</p>
+                </div>
             </div>
+
+            <button className="EightBall-button" onClick={restart}>New Game</button>
 
         </div>
     )
