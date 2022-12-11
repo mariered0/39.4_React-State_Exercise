@@ -32,23 +32,22 @@ const EightBall = (props) => {
     const randomIdx = () => Math.floor(Math.random() * 19);
 
     const restart = () => {
-        chooseMsg(messages[20].msg);
+        chooseMsg(20);
     }
 
 
     const showAnswer = () => {
-        console.log('clicked!');
-        chooseMsg(messages[randomIdx()].msg);
+        chooseMsg([randomIdx()]);
     }
 
-    const [message, chooseMsg] = useState(messages[20].msg);
+    const [idx, chooseMsg] = useState(20);
 
     return (
         <div className="EightBall">
             <h1 className="EightBall-title">Eight Ball</h1>
-            <div className="EightBall-ball" onClick={showAnswer}>
+            <div className="EightBall-ball" style={{backgroundColor: messages[`${idx}`].color}} onClick={showAnswer}>
                 <div className="EightBall-message">
-                <p>{message}</p>
+                <p>{messages[`${idx}`].msg}</p>
                 </div>
             </div>
 
